@@ -42,7 +42,7 @@ The system helps administrators manage complaints, assign them to the appropriat
 | Category | Technologies |
 |---|---|
 | Backend | Python, Django |
-| Frontend | HTML, CSS, Bootstrap 5, JavaScript |
+| Frontend | HTML, CSS, Bootstrap 5 |
 | Database | MySQL |
 | Image Handling | Pillow |
 | Environment Configuration | python-dotenv |
