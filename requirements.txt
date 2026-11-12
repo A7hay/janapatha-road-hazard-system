@@ -1,0 +1,4 @@
+Django==5.2.19
+mysqlclient
+python-dotenv
+Pillow

@@ -1,0 +1,152 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}Home | JANAPATHA{% endblock %}
+
+{% block content %}
+
+<div class="hero-section text-center">
+    <h1>JANAPATHA</h1>
+    <h4>Every Road Matters, Every Voice Counts</h4>
+    <p>Report road problems and track repair progress.</p>
+</div>
+
+<div style="margin-top: -15px; padding-bottom: 60px;">
+    <div class="row justify-content-center align-items-stretch g-4">
+
+    {% if user.is_authenticated %}
+
+        {% if user.is_superuser %}
+
+            <div class="col-md-4 d-flex">
+                <div class="card shadow p-4 home-card w-100">
+                    <h4>Administration</h4>
+                    <p>Manage complaints and department staff.</p>
+
+                    <a href="{% url 'admin_dashboard' %}"
+                       class="btn btn-danger mb-2">
+                        Admin Dashboard
+                    </a>
+
+                    <a href="{% url 'add_staff' %}"
+                       class="btn btn-primary mb-2">
+                        Register Department Staff
+                    </a>
+
+                    <a href="/admin/"
+                       class="btn btn-dark mb-2">
+                        Manage Departments
+                    </a>
+
+                    <a href="{% url 'logout' %}"
+                       class="btn btn-outline-secondary">
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+        {% elif user.profile.role == 'resident' %}
+
+            <div class="col-md-4 d-flex">
+                <div class="card shadow p-4 home-card w-100">
+                    <h4>Resident</h4>
+                    <p>Report road problems and track your complaints.</p>
+
+                    <a href="{% url 'resident_dashboard' %}"
+                       class="btn btn-primary mb-2">
+                        Resident Dashboard
+                    </a>
+
+                    <a href="{% url 'logout' %}"
+                       class="btn btn-outline-secondary">
+                        Logout
+                    </a>
+                </div>
+            </div>
+
+        {% elif user.profile.role == 'staff' %}
+
+            <div class="col-md-4 d-flex">
+                <div class="card shadow p-4 home-card w-100">
+                    <h4>Department Staff</h4>
+                    <p>View assigned complaints and update repair progress.</p>
+
+                    <a href="{% url 'staff_dashboard' %}"
+                       class="btn btn-warning mb-2">
+                        Staff Dashboard
+                    </a>
+
+                    <a href="{% url 'logout' %}"
+                       class="btn btn-outline-secondary">
+                        Logout
+                    </a>
+                </div>
+            </div>
+            </div>
+
+        {% endif %}
+
+    {% else %}
+
+        
+        <div class="col-md-4 d-flex">
+            <div class="card shadow p-4 home-card w-100">
+    <div class="card-icon resident-icon">
+        <i class="bi bi-person-fill"></i>
+    </div>
+
+    <h4>Resident</h4>
+    <p>Register and report road problems.</p>
+
+    <a href="{% url 'register' %}" class="btn btn-primary mb-2">
+        Resident Registration
+    </a>
+
+    <a href="{% url 'resident_login' %}" class="btn btn-outline-primary">
+        Resident Login
+    </a>
+</div>
+        </div>
+
+    
+        <div class="col-md-4 d-flex">
+            <div class="card shadow p-4 home-card w-100">
+    <div class="card-icon staff-icon">
+        <i class="bi bi-tools"></i>
+    </div>
+
+    <h4>Department Staff</h4>
+    <p>Register as department staff or log in to view complaints.</p>
+
+    <a href="{% url 'add_staff' %}" class="btn btn-primary mb-2">
+        Staff Registration
+    </a>
+
+    <a href="{% url 'staff_login' %}" class="btn btn-warning">
+        Staff Login
+    </a>
+</div>
+        </div>
+
+        
+        <div class="col-md-4 d-flex">
+            <div class="card shadow p-4 home-card w-100">
+    <div class="card-icon admin-icon">
+        <i class="bi bi-building-gear"></i>
+    </div>
+
+    <h4>Administration</h4>
+    <p>Manage complaints and department staff.</p>
+
+    <a href="{% url 'admin_login' %}" class="btn btn-danger">
+        Admin Login
+    </a>
+</div>
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Assign Complaint{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+
+        <div class="card shadow p-4">
+
+            <h3>Assign Complaint</h3>
+
+            <hr>
+
+            <p>
+                <strong>Tracking Number:</strong>
+                {{ complaint.tracking_number }}
+            </p>
+
+            <p>
+                <strong>Title:</strong>
+                {{ complaint.title }}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                {{ complaint.location }}
+            </p>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary">
+                    Assign Department
+                </button>
+
+                <a href="{% url 'admin_dashboard' %}"
+                   class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

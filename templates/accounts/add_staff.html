@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Staff Registration{% endblock %}
+
+{% block content %}
+<div class="staff-register-container">
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card shadow p-4">
+
+            <h3 class="text-center mb-4">Register Department Staff</h3>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Create Staff Account
+                </button>
+            </form>
+
+            <a href="{% url 'admin_dashboard' %}"
+               class="btn btn-secondary mt-3">
+                Back to Admin Dashboard
+            </a>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

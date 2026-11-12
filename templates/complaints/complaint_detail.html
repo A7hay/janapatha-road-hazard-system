@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}Complaint Progress{% endblock %}
+
+{% block content %}
+
+<div class="complaint-info">
+
+    <h3>Complaint Details</h3>
+
+    <hr>
+
+    <p>
+        <strong>Tracking Number:</strong>
+        {{ complaint.tracking_number }}
+    </p>
+
+    <p>
+        <strong>Title:</strong>
+        {{ complaint.title }}
+    </p>
+
+    <p>
+        <strong>Category:</strong>
+        {{ complaint.get_category_display }}
+    </p>
+
+    <p>
+        <strong>Location:</strong>
+        {{ complaint.location }}
+    </p>
+
+    <p>
+        <strong>Description:</strong>
+        {{ complaint.description }}
+    </p>
+
+    <p>
+        <strong>Department:</strong>
+        {{ complaint.department.name|default:"Not Assigned" }}
+    </p>
+
+    <p>
+        <strong>Current Status:</strong>
+        {{ complaint.get_status_display }}
+    </p>
+
+    {% if complaint.photo %}
+
+        <p><strong>Complaint Photo:</strong></p>
+
+        <img src="{{ complaint.photo.url }}"
+             class="img-fluid rounded mb-3"
+             style="max-width:300px;"
+             alt="Complaint photo">
+
+    {% endif %}
+
+    {% if complaint.admin_remarks %}
+
+        <p>
+            <strong>Admin Remarks:</strong>
+            {{ complaint.admin_remarks }}
+        </p>
+
+    {% endif %}
+
+</div>
+
+<div class="card shadow p-4 mt-4">
+
+    <h3>Complaint Progress History</h3>
+
+    <hr>
+
+    {% for update in updates %}
+
+        <div class="complaint-update">
+
+            <h5>{{ update.get_status_display }}</h5>
+
+            <p>{{ update.remarks }}</p>
+
+            <p>
+                <strong>Updated By:</strong>
+                {{ update.updated_by.username|default:"Unknown" }}
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                {{ update.created_at|date:"d M Y, h:i A" }}
+            </p>
+
+            {% if update.evidence_photo %}
+
+                <p><strong>Repair Evidence:</strong></p>
+
+                <img src="{{ update.evidence_photo.url }}"
+                     class="img-fluid"
+                     style="max-width:300px;"
+                     alt="Repair evidence">
+
+            {% endif %}
+
+        </div>
+
+    {% empty %}
+
+        <p>No progress updates available yet.</p>
+
+    {% endfor %}
+
+</div>
+
+<a href="{% url 'home' %}" class="btn btn-secondary mt-3">
+    Home
+</a>
+
+{% endblock %}

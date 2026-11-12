@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Staff Dashboard{% endblock %}
+
+{% block content %}
+
+<h2>Department Staff Dashboard</h2>
+
+<div class="card shadow p-3 mb-4">
+    <h5>Department</h5>
+    <p class="mb-0">
+        {{ request.user.profile.department.name }}
+    </p>
+</div>
+
+<h4>Department Complaints</h4>
+
+<div class="table-responsive">
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Tracking Number</th>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Resident</th>
+                <th>Status</th>
+                <th>Work Taken By</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for complaint in complaints %}
+
+            <tr>
+
+                <td>{{ complaint.tracking_number }}</td>
+                <td>{{ complaint.title }}</td>
+                <td>{{ complaint.location }}</td>
+                <td>{{ complaint.resident.username }}</td>
+                <td>{{ complaint.get_status_display }}</td>
+
+                <td>
+                    {% if complaint.assigned_staff %}
+                        {{ complaint.assigned_staff.username }}
+                    {% else %}
+                        Not Taken
+                    {% endif %}
+                </td>
+
+                <td>
+
+                    {% if complaint.assigned_staff is None %}
+
+                        <form method="POST"
+                              action="{% url 'take_complaint' complaint.pk %}">
+
+                            {% csrf_token %}
+
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Take This Work
+                            </button>
+
+                        </form>
+
+                    {% elif complaint.assigned_staff == request.user %}
+
+                        <a href="{% url 'staff_update_complaint' complaint.pk %}"
+                           class="btn btn-primary btn-sm">
+                            Update Progress
+                        </a>
+
+                    {% else %}
+
+                        <span class="text-secondary">
+                            Taken by another staff
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="7" class="text-center">
+                    No complaints assigned to your department.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

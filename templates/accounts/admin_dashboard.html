@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Admin Dashboard</h2>
+
+
+<div class="row mb-4">
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow stat-card">
+            <h6>Total Complaints</h6>
+            <h3>{{ total_complaints }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow stat-card">
+            <h6>Pending Complaints</h6>
+            <h3>{{ pending_complaints }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow stat-card">
+            <h6>Completed Complaints</h6>
+            <h3>{{ completed_complaints }}</h3>
+        </div>
+    </div>
+
+</div>
+
+<h4>All Complaints</h4>
+
+<div class="table-responsive">
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Tracking Number</th>
+                <th>Resident</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Department</th>
+                <th>Staff</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for complaint in complaints %}
+
+            <tr>
+
+                <td>{{ complaint.tracking_number }}</td>
+                <td>{{ complaint.resident.username }}</td>
+                <td>{{ complaint.title }}</td>
+                <td>{{ complaint.get_category_display }}</td>
+                <td>{{ complaint.location }}</td>
+
+                <td>
+                    {{ complaint.department.name|default:"Not Assigned" }}
+                </td>
+
+                <td>
+                    {{ complaint.assigned_staff.username|default:"Not Taken" }}
+                </td>
+
+                <td>{{ complaint.get_status_display }}</td>
+
+                <td>
+                    <a href="{% url 'assign_complaint' complaint.pk %}"
+                       class="btn btn-sm btn-warning">
+                        Assign
+                    </a>
+
+                    <a href="{% url 'complaint_detail' complaint.pk %}"
+                       class="btn btn-sm btn-info mt-1">
+                        View
+                    </a>
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="9" class="text-center">
+                    No complaints have been submitted.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

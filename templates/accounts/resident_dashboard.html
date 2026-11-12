@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Resident Dashboard{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Resident Dashboard</h2>
+
+<div class="row mb-4">
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow stat-card">
+            <h6>Total Complaints</h6>
+            <h3>{{ total_complaints }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow stat-card">
+            <h6>Pending</h6>
+            <h3>{{ pending_complaints }}</h3>
+        </div>
+    </div>
+
+  
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow stat-card">
+            <h6>In Progress</h6>
+            <h3>{{ in_progress_complaints }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow stat-card">
+            <h6>Completed</h6>
+            <h3>{{ completed_complaints }}</h3>
+        </div>
+    </div>
+
+    
+
+</div>
+
+<a href="{% url 'complaint_create' %}" class="btn btn-primary mb-4">
+    Submit New Complaint
+</a>
+
+<h4>My Complaints</h4>
+
+<div class="table-responsive">
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Tracking Number</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Submitted Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for complaint in complaints %}
+
+            <tr>
+                <td>{{ complaint.tracking_number }}</td>
+                <td>{{ complaint.title }}</td>
+
+                <td>
+                    {{ complaint.department.name|default:"Not Assigned" }}
+                </td>
+
+                <td>{{ complaint.get_status_display }}</td>
+
+                <td>{{ complaint.created_at|date:"d-m-Y" }}</td>
+
+                <td>
+                    <a href="{% url 'complaint_detail' complaint.pk %}"
+                       class="btn btn-sm btn-info">
+                        View Progress
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="6" class="text-center">
+                    You have not submitted any complaints.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

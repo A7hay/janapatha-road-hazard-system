@@ -1,0 +1,448 @@
+/* =========================
+   JANAPATHA - GLOBAL STYLE
+========================= */
+
+:root {
+    --primary: #173b57;
+    --secondary: #087e8b;
+    --accent: #17a2a4;
+    --background: #f3f7fa;
+    --text: #263746;
+    --muted: #718096;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+
+/* Navbar */
+
+.navbar {
+    background: var(--primary) !important;
+    padding: 15px 0;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 23px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar .nav-link {
+    color: #e8f1f7 !important;
+    margin-left: 12px;
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+    color: #57d5d2 !important;
+}
+
+/* Headings and text */
+
+h1, h2, h3, h4, h5 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+p {
+    color: var(--muted);
+}
+
+/* Home hero */
+
+.hero-section {
+    padding: 65px 20px;
+    margin-bottom: 35px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #173b57, #087e8b);
+    color: white;
+}
+
+.hero-section h1,
+.hero-section h4,
+.hero-section p {
+    color: white;
+}
+
+.hero-section h1 {
+    font-size: 45px;
+    letter-spacing: 2px;
+}
+
+/* Cards */
+
+/* General Cards */
+.card {
+    background: white;
+    border: none;
+    border-radius: 12px;
+}
+
+.card.shadow {
+    box-shadow: 0 4px 16px rgba(25, 55, 80, 0.08) !important;
+}
+
+/* Homepage Cards */
+.home-card {
+    min-height: 290px;
+    height: 100%;
+    padding: 30px !important;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Card Icons */
+.home-card {
+    min-height: 320px;
+    padding: 30px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 16px;
+}
+
+.card-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 42px;
+}
+
+.resident-icon {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.staff-icon {
+    background: #fff3cd;
+    color: #d69e00;
+}
+
+.admin-icon {
+    background: #fce4ec;
+    color: #c62828;
+}
+
+.home-card h4 {
+    font-weight: 700;
+    color: #172b4d;
+    margin-bottom: 12px;
+}
+
+.home-card p {
+    color: #64748b;
+    flex-grow: 0;
+       margin-bottom: 15px;
+}
+
+.home-card .btn {
+    width: 100%;
+    margin-bottom: 10px;
+        margin-top: 5px;
+}
+.stat-card {
+    min-height: 130px;
+    height: auto;
+    padding: 22px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.stat-card h3 {
+    font-size: 30px;
+    margin-top: 8px;
+    overflow-wrap: break-word;
+}
+
+.stat-card p {
+    margin-bottom: 0;
+    overflow-wrap: break-word;
+}
+
+.navbar .bi-person-circle {
+    font-size: 19px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.navbar .nav-link {
+    display: flex;
+    align-items: center;
+        gap: 7px;
+    padding: 10px 13px;
+    transition: color 0.3s ease;
+}
+.navbar .nav-link i {
+    font-size: 17px;
+}
+
+.navbar .nav-link:hover {
+    color: #ffc107 !important;
+}
+/* Buttons */
+
+.btn {
+    border-radius: 7px;
+    padding: 9px 18px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: #0d2a40;
+    border-color: #0d2a40;
+}
+
+.btn-success {
+    background: #16866b;
+    border-color: #16866b;
+}
+
+.btn-info {
+    background: #d9f0f2;
+    color: #075d68;
+    border-color: #d9f0f2;
+}
+
+/* Forms */
+
+form {
+    margin-top: 15px;
+}
+
+form p {
+    margin-bottom: 18px;
+}
+
+form label {
+    display: block;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-control,
+.form-select,
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d6e0e8;
+    border-radius: 7px;
+    background: white;
+}
+
+.form-control:focus,
+.form-select:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(8, 126, 139, 0.12);
+    outline: none;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+/* Tables */
+
+.table-responsive {
+    background: white;
+    border-radius: 10px;
+    overflow-x: auto;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.table thead th {
+    background: var(--primary);
+    color: white;
+    padding: 14px;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    padding: 13px;
+}
+
+.table tbody tr:hover {
+    background: #edf7f8;
+}
+
+/* Complaint details and progress */
+
+.complaint-info {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.complaint-update {
+    background: white;
+    border-left: 4px solid var(--secondary);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.complaint-update h5 {
+    color: var(--secondary);
+}
+
+.complaint-update img {
+    border-radius: 8px;
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+/* Alerts */
+
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Footer */
+
+.footer {
+      background: var(--primary);
+    color: white;
+    padding: 22px;
+    margin-top: auto;
+    text-align: center;
+    width: 100%;
+}
+   
+
+.footer p {
+    color: #e8f1f7;
+    margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .navbar .nav-link {
+        margin-left: 0;
+        padding: 9px;
+    }
+
+    .hero-section {
+        padding: 40px 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 32px;
+    }
+
+    .table {
+        font-size: 13px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+}
+html, body {
+    min-height: 100vh;
+    margin: 0;
+}
+body {
+    min-height: 100vh;
+    display: block;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrapper .main-content {
+    flex: 1 0 auto;
+    padding-bottom: 35px;
+}
+
+.page-wrapper .footer {
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+
+
+/* Compact action buttons in dashboard tables */
+.table .btn {
+    padding: 5px 10px;
+    font-size: 13px;
+    line-height: 1.3;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+/* Homepage card positioning */
+main.main-content:has(.hero-section) {
+    padding-bottom: 0 !important;
+}
+
+main.main-content:has(.hero-section) .hero-section {
+    margin-bottom: 25px;
+}
+
+
+
+
+/* Space before footer */
+main.main-content:has(.hero-section) {
+    padding-bottom: 40px !important;
+}
+.login-page-spacing {
+    padding-top: 10px;
+    padding-bottom: 60px;
+}
+.staff-register-container {
+        padding-top: 20px;
+    padding-bottom: 80px;
+    margin-bottom: 40px;
+    min-height: 70vh;
+}
+.staff-register-container .card {
+    margin-bottom: 30px;
+}
