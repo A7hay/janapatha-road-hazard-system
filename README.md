@@ -142,9 +142,6 @@ DB_PORT=3306
 
 EMAIL_HOST_USER=your_email@gmail.com
 EMAIL_HOST_PASSWORD=your_gmail_app_password
-```
-
-**Important:** Replace the example values with your actual local configuration. Never upload your `.env` file or expose passwords and secret keys on GitHub.
 
 ### 6. Create the MySQL Database
 
